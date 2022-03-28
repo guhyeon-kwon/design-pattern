@@ -1,9 +1,16 @@
 package me.test.designpatterns.singleton;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         Settings settings = Settings.getInstance();
-        Settings settings2 = Settings.getInstance();
-        System.out.println(settings == settings2);
+
+        Constructor<Settings> constructor = Settings.class.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        Settings settings1 = constructor.newInstance();
+
+        System.out.println(settings == settings1);
     }
 }
