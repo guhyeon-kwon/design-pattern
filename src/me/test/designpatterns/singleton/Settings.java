@@ -1,20 +1,17 @@
 package me.test.designpatterns.singleton;
 
-import java.io.Serializable;
+public enum Settings {
+    INSTANCE;
 
-public class Settings implements Serializable {
+    Settings(){}
 
-    private Settings() {};
+    private Integer number;
 
-    private static class SettingsHolder {
-        private static final Settings INSTANCE = new Settings();
+    public Integer getNumber(){
+       return number;
     }
 
-    public static Settings getInstance(){
-        return SettingsHolder.INSTANCE;
-    }
-
-    protected Object readResolve(){
-        return getInstance();
+    public void setNumber(Integer number){
+        this.number = number;
     }
 }
